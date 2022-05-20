@@ -1,6 +1,7 @@
 package org.studyeasy.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -11,14 +12,13 @@ public class PostsService {
 	
 	
 
-	List<Post>posts= new ArrayList<>();
-	public PostsService()
-	{
-		posts.add(new Post("datatype","integer",1));
-		posts.add(new Post("datatype","string",2));
-		posts.add(new Post("datatype","float",4));
-		posts.add(new Post("datatype","double",5));
-	}
+	static List<Post>posts= new ArrayList<>(
+			Arrays.asList(
+				new Post("datatype","integer",1),
+				new Post("datatype","string",2),
+				new Post("datatype","float",4),
+				new Post("datatype","double",5))
+			);
 	
 	public List<Post> getPosts()
 	{
@@ -39,5 +39,19 @@ public class PostsService {
 	
 	public void addPost(Post post) {
 		posts.add(post);
+	}
+
+	public void updatePost(Post post, int id) {
+		// TODO Auto-generated method stub
+		for(int i=0;i<posts.size();i++)
+		{
+			Post tmp=posts.get(i);
+			if(tmp.getid()==id)
+			{
+				posts.set(i, post);
+				return;
+			}
+		}
+		return;
 	}
 }

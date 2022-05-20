@@ -29,5 +29,11 @@ public class ReturnLists {
 	{
 		new PostsService().addPost(post);
 	}
+	
+	@RequestMapping(method=RequestMethod.PUT,value ="/lists/{id}" )
+	public void updatePost(@RequestBody Post post, @PathVariable int id)
+	{
+		new PostsService().updatePost(post,id);
+	}
 
 }
